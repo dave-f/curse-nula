@@ -1,0 +1,11 @@
+load curse.bin
+base 0x1900
+exec 0x1900
+data 0x190a,118
+data 0x2d9d,38
+data 0x2e14,71
+data 0x2f86,43
+data 0x318a,3190
+data 0x3e38,14
+data 0x3ea3,61
+save curse.dis
