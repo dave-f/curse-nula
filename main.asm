@@ -7,4 +7,5 @@ ORG &900
 .END:
 
     PUTFILE "curse.new","CURSE",&1900,&1900
+    PUTFILE "curse.bin","ORG",&1900,&1900
     SAVE "dave",START,END
