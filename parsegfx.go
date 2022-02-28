@@ -167,5 +167,16 @@ func main() {
 
 	ioutil.WriteFile("snake.new", newSnakeGraphic, fs.ModePerm)
 
+	// This creates a patch file to jump straight to level 4
+	levelJump := []byte{0xa9, 0x03, 0x8d, 0x3b, 0x04}
+	ioutil.WriteFile("level.patch", levelJump, fs.ModePerm)
+
+	// Tinker with the Pharaoh himself!
+	// Possible file offset: 9312, width 14 height 23
+	fmt.Println("Pharaoh starts at 9312")
+	//pharaohStart := 9312
+	//pharaohEnd := pharaohStart + (7 * 23)
+	//pharaohGraphic := data[pharaohStart:pharaohEnd]
+
 	fmt.Println("OK")
 }

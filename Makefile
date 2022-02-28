@@ -3,11 +3,13 @@
 #
 
 BEEBEM       := C:/Dave/b2/b2_Debug
+#BEEBEM       := C:/Dave/beebjit_win_0.9.6/beebjit
 PNG2BBC      := ../png2bbc/Release/png2bbc.exe
 SNAP         := ../snap/Release/snap.exe
 BEEBEM_FLAGS := -b -0
+#BEEBEM_FLAGS := -0 $(OUTPUT_SSD)
 BEEBASM      := ../beebasm/beebasm.exe
-GAME_SSD     := res/blank.ssd
+#GAME_SSD     := res/blank.ssd
 OUTPUT_SSD   := curse-nula.ssd
 MAIN_ASM     := main.asm
 RM           := del
@@ -19,7 +21,9 @@ CP           := copy
 
 all: $(OUTPUT_SSD)
 
-$(OUTPUT_SSD): $(MAIN_ASM) curse.bin curse.new
+$(OUTPUT_SSD): $(MAIN_ASM)
+	$(SNAP) curse.bin snake.new 7591 curse.new
+	$(SNAP) curse.new level.patch 1467
 	$(BEEBASM) -i $(MAIN_ASM) -do $(OUTPUT_SSD) -boot CURSE
 
 clean:
@@ -27,4 +31,5 @@ clean:
 	$(RM) /Q bin\*.*
 
 run:
+	cd c:/Dave/beebjit_win_0.9.6
 	$(BEEBEM) $(BEEBEM_FLAGS) $(OUTPUT_SSD)
