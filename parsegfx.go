@@ -1,5 +1,4 @@
-// Bruce Lee BBC Micro graphics extractor
-// TODO Explain how all graphics are all stored
+// Pharoah's Curse BBC Micro graphics extractor
 
 package main
 
@@ -8,6 +7,7 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"io/fs"
 	"io/ioutil"
 	"os"
 )
@@ -143,6 +143,29 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+
+	// Replace the snake graphic with red pixels
+	snakeStart := 6391 + (5 * 16 * 15)
+	snakeEnd := snakeStart + (5 * 16 * 4)
+	snakeGraphic := data[snakeStart:snakeEnd]
+	newSnakeGraphic := snakeGraphic[:0]
+	fmt.Println("Snake starts at", snakeStart)
+	for i, v := range snakeGraphic {
+		if v == 0x00 {
+			newSnakeGraphic = append(newSnakeGraphic, 0)
+		} else if v == 0x55 {
+			newSnakeGraphic = append(newSnakeGraphic, 1)
+		} else if snakeGraphic[i] == 0xaa {
+			newSnakeGraphic = append(newSnakeGraphic, 2)
+		} else if snakeGraphic[i] == 0xff {
+			newSnakeGraphic = append(newSnakeGraphic, 3)
+		} else {
+			fmt.Printf("Unexpected colour in snake: 0x%02x at %d\n", v, i)
+			return
+		}
+	}
+
+	ioutil.WriteFile("snake.new", newSnakeGraphic, fs.ModePerm)
 
 	fmt.Println("OK")
 }
