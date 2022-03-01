@@ -81,6 +81,42 @@ func renderCharacter(img *image.RGBA, fileOffset int, x int, y int) {
 	}
 }
 
+// The pharaoh is stored fairly odd, so we need a special routine for him!
+func renderPharaoh(img *image.RGBA, data []byte, x int, y int) {
+
+	renderCol := func(x int, y int, col []byte, swap bool) {
+		for _, v := range col {
+			l, r := decodePixel(v)
+			pixelOne := coloursBBC[l]
+			pixelTwo := coloursBBC[r]
+			if swap {
+				temp := pixelOne
+				pixelOne = pixelTwo
+				pixelTwo = temp
+			}
+			img.Set(x, y, pixelOne)
+			img.Set(x+1, y, pixelTwo)
+			y++
+		}
+	}
+
+	// Bytes 9311 - 9311 + 23 (first column)
+	// Bytes 9357 - 9357 + 23 (second column)
+	// Bytes 9403 - 9403 + 23 (third column)
+	// Bytes 9449 - 9449 + 23 (fourth column)
+	renderCol(x, y, data[9311:9311+23], false)
+	renderCol(x+2, y, data[9357:9357+23], false)
+	renderCol(x+4, y, data[9403:9403+23], false)
+	renderCol(x+6, y, data[9449:9449+23], false)
+
+	// Bytes 9334 - 9334 + 23 (first column)
+	// Bytes 9380 - 9380 + 23 (second column)
+	// Bytes 9426 - 9426 + 23 (third column)
+	renderCol(x-2, y, data[9334:9334+23], false)
+	renderCol(x-4, y, data[9380:9380+23], false)
+	renderCol(x-6, y, data[9426:9426+23], false)
+}
+
 func main() {
 
 	f, err := os.Open("curse.bin")
@@ -128,6 +164,9 @@ func main() {
 	// Render palette
 	renderPalette(img, 0, 18)
 
+	// And pharaoh
+	renderPharaoh(img, data, 48, 20)
+
 	// Save it
 	pngFile, err := os.Create("image.png")
 
@@ -170,13 +209,6 @@ func main() {
 	// This creates a patch file to jump straight to level 4
 	levelJump := []byte{0xa9, 0x03, 0x8d, 0x3b, 0x04}
 	ioutil.WriteFile("level.patch", levelJump, fs.ModePerm)
-
-	// Tinker with the Pharaoh himself!
-	// Possible file offset: 9312, width 14 height 23
-	fmt.Println("Pharaoh starts at 9312")
-	//pharaohStart := 9312
-	//pharaohEnd := pharaohStart + (7 * 23)
-	//pharaohGraphic := data[pharaohStart:pharaohEnd]
 
 	fmt.Println("OK")
 }

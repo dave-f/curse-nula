@@ -9,9 +9,9 @@
 |      5 | magenta       | magenta       |                 |
 |      6 | cyan          | cyan          |                 |
 |      7 | white         | white         |                 |
-|      8 | black/white   | black/white   | pharaoh's eyes? |
+|      8 | black/white   | black/white   | pharaoh's eyes  |
 |      9 | red/cyan      | red/cyan      | snake egg       |
-|     10 | green/magenta | black/white   | pharaoh's eyes? |
+|     10 | green/magenta | black/white   | pharaoh's eyes  |
 |     11 | blue/yellow   | green         | ?               |
 |     12 | yellow/blue   | black         | dynamite        |
 |     13 | magenta/green | blue          | dynamite        |
