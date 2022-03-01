@@ -81,6 +81,26 @@ func renderCharacter(img *image.RGBA, fileOffset int, x int, y int) {
 	}
 }
 
+func renderLives(img *image.RGBA, d []byte, x int, y int) {
+	offs := 0
+	curX, curY := x, y
+
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 7; j++ {
+			thisByte := d[offs]
+			l, r := decodePixel(thisByte)
+			pixelOne := coloursBBC[l]
+			pixelTwo := coloursBBC[r]
+			img.Set(curX, curY, pixelOne)
+			img.Set(curX+1, curY, pixelTwo)
+			curY++
+			offs++
+		}
+		curY = y
+		curX += 2
+	}
+}
+
 // The pharaoh is stored fairly odd, so we need a special routine for him!
 func renderPharaoh(img *image.RGBA, data []byte, x int, y int) {
 
@@ -161,11 +181,14 @@ func main() {
 		x += 10
 	}
 
-	// Render palette
-	renderPalette(img, 0, 18)
-
 	// And pharaoh
-	renderPharaoh(img, data, 48, 20)
+	renderPharaoh(img, data, 8, 18)
+
+	// lives indicator at 9297, x 4 y 7
+	renderLives(img, data[9297:9297+2*7], 16, 18)
+
+	// Render palette
+	renderPalette(img, 0, 44)
 
 	// Save it
 	pngFile, err := os.Create("image.png")
@@ -206,7 +229,7 @@ func main() {
 
 	ioutil.WriteFile("snake.new", newSnakeGraphic, fs.ModePerm)
 
-	// This creates a patch file to jump straight to level 4
+	// This creates a patch file to jump straight to level 4 so we can see the pharaoh
 	levelJump := []byte{0xa9, 0x03, 0x8d, 0x3b, 0x04}
 	ioutil.WriteFile("level.patch", levelJump, fs.ModePerm)
 
