@@ -427,16 +427,16 @@
 1BFD 60       RTS
 1BFE A2 0E    LDX #&0E
 1C00 A0 07    LDY #&07
-1C02 20 76 0E JSR &0E76     ; Set some colours up
+1C02 20 76 0E JSR &0E76     ; PALCHANGE 14 -> 7
 1C05 A2 0D    LDX #&0D
 1C07 A0 04    LDY #&04
-1C09 20 76 0E JSR &0E76
+1C09 20 76 0E JSR &0E76     ; PALCHANGE 13 -> 4
 1C0C A2 0C    LDX #&0C
 1C0E A0 00    LDY #&00
-1C10 20 76 0E JSR &0E76
+1C10 20 76 0E JSR &0E76     ; PALCHANGE 12 -> 0
 1C13 A2 0A    LDX #&0A
 1C15 A0 0F    LDY #&0F
-1C17 20 76 0E JSR &0E76
+1C17 20 76 0E JSR &0E76     ; PALCHANGE 10 -> 15
 1C1A 60       RTS
 1C1B 20 8C 0E JSR &0E8C     ; Increment level number (&E1B)
 1C1E A9 30    LDA #&30
@@ -601,10 +601,10 @@
 1D6A AA       TAX
 1D6B BD AC 04 LDA &04AC,X
 1D6E A8       TAY
-1D6F A2 0F    LDX #&0F
-1D71 20 76 0E JSR &0E76
+1D6F A2 0F    LDX #&0F      ; &F6F on download
+1D71 20 76 0E JSR &0E76     ; PALCHANGE 15 -> ? (different snake colour for different levels)
 1D74 A2 0B    LDX #&0B
-1D76 20 76 0E JSR &0E76
+1D76 20 76 0E JSR &0E76     ; PALCHANGE 11 -> ? (second enemy colour?)
 1D79 60       RTS
 1D7A A9 FF    LDA #&FF
 1D7C 8D 10 04 STA &0410
@@ -2469,7 +2469,7 @@
 2D93 D0 F3    BNE &2D88
 2D95 A2 0F    LDX #&0F
 2D97 A0 02    LDY #&02
-2D99 20 76 0E JSR &0E76     ; Reprogram colour 15 to be colour 2
+2D99 20 76 0E JSR &0E76     ; PALCHANGE 15 -> 2
 2D9C 60       RTS
 2D9D 16       EQUB 22       ; VDU codes &1F9D
 2D9E 02       EQUB 02
