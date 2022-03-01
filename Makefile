@@ -21,9 +21,13 @@ CP           := copy
 
 all: $(OUTPUT_SSD)
 
-$(OUTPUT_SSD): $(MAIN_ASM)
+$(OUTPUT_SSD): $(MAIN_ASM) Makefile
 	$(SNAP) curse.bin snake.new 7591 curse.new
-	$(SNAP) curse.new level.patch 1467
+#	$(SNAP) curse.new level.patch 1467
+#	$(SNAP) curse.new pharaoh.patch 9311
+#	$(SNAP) curse.new pharaoh.patch 9357
+#	$(SNAP) curse.new pharaoh.patch 9403
+#	$(SNAP) curse.new pharaoh.patch 9449
 	$(BEEBASM) -i $(MAIN_ASM) -do $(OUTPUT_SSD) -boot CURSE
 
 clean:
