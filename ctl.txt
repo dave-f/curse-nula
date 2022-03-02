@@ -8,4 +8,5 @@ data 0x2f86,43
 data 0x318a,3190
 data 0x3e38,14
 data 0x3ea3,61
+data 0x2228,1
 save curse.dis
