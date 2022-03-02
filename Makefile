@@ -22,7 +22,7 @@ CP           := copy
 all: $(OUTPUT_SSD)
 
 $(OUTPUT_SSD): $(MAIN_ASM) Makefile
-	$(SNAP) curse.bin snake.new 7591 curse.new
+	$(SNAP) curse.bin snake.patch 7591 curse.new
 #	$(SNAP) curse.new level.patch 1467
 #	$(SNAP) curse.new pharaoh.patch 9311
 #	$(SNAP) curse.new pharaoh.patch 9357

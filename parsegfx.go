@@ -206,28 +206,28 @@ func main() {
 		return
 	}
 
-	// Replace the snake graphic with red pixels
+	// Change the snake from red to 11, disables collision
 	snakeStart := 6391 + (5 * 16 * 15)
 	snakeEnd := snakeStart + (5 * 16 * 4)
 	snakeGraphic := data[snakeStart:snakeEnd]
 	newSnakeGraphic := snakeGraphic[:0]
-	fmt.Println("Snake starts at", snakeStart)
+
 	for i, v := range snakeGraphic {
 		if v == 0x00 {
 			newSnakeGraphic = append(newSnakeGraphic, 0)
-		} else if v == 0x55 {
-			newSnakeGraphic = append(newSnakeGraphic, 1)
-		} else if snakeGraphic[i] == 0xaa {
-			newSnakeGraphic = append(newSnakeGraphic, 2)
-		} else if snakeGraphic[i] == 0xff {
-			newSnakeGraphic = append(newSnakeGraphic, 3)
+		} else if v == 0x55 { // right pixel
+			newSnakeGraphic = append(newSnakeGraphic, 0x45)
+		} else if snakeGraphic[i] == 0xaa { // left pixel
+			newSnakeGraphic = append(newSnakeGraphic, 0x8a)
+		} else if snakeGraphic[i] == 0xff { // both pixels
+			newSnakeGraphic = append(newSnakeGraphic, 0xcf)
 		} else {
 			fmt.Printf("Unexpected colour in snake: 0x%02x at %d\n", v, i)
 			return
 		}
 	}
 
-	ioutil.WriteFile("snake.new", newSnakeGraphic, fs.ModePerm)
+	ioutil.WriteFile("snake.patch", newSnakeGraphic, fs.ModePerm)
 
 	// This creates a patch file to jump straight to level 4 so we can see the pharaoh
 	levelJump := []byte{0xa9, 0x03, 0x8d, 0x3b, 0x04}
