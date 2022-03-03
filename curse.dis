@@ -834,7 +834,7 @@
 1F64 CE 56 04 DEC &0456
 1F67 D0 E0    BNE &1F49
 1F69 60       RTS
-1F6A 18       CLC
+1F6A 18       CLC           ; Add 16 to &78/&79 (&116A)
 1F6B A5 78    LDA &78
 1F6D 69 10    ADC #&10
 1F6F 85 78    STA &78
@@ -1065,18 +1065,18 @@
 2163 2E 13 04 ROL &0413
 2166 AD 13 04 LDA &0413
 2169 60       RTS
-216A AD 1B 04 LDA &041B
-216D D0 31    BNE &21A0     ; If not dead, exit
+216A AD 1B 04 LDA &041B     ; &136A
+216D D0 31    BNE &21A0     ; If player alive, exit
 216F 20 42 1A JSR &1A42
 2172 20 82 0F JSR &0F82
 2175 20 CB 19 JSR &19CB
-2178 A9 FF    LDA #&FF
+2178 A9 FF    LDA #&FF      ; Set dead flag
 217A 8D 1B 04 STA &041B
-217D CE 1A 04 DEC &041A
-2180 F0 06    BEQ &2188
+217D CE 1A 04 DEC &041A     ; Decrement lives (&EA this out for infinite lives)
+2180 F0 06    BEQ &2188     ; Are lives 0?
 2182 20 1E 0E JSR &0E1E
 2185 4C 71 10 JMP &1071
-2188 A9 64    LDA #&64
+2188 A9 64    LDA #&64      ; Out of lives..
 218A 8D 00 04 STA &0400
 218D A9 13    LDA #&13      ; *FX 19
 218F 20 F4 FF JSR &FFF4
