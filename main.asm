@@ -1,8 +1,8 @@
 ; Pharoah's Curse  : NuLA version
 ; 22 Feb 2022 -- 
 
-.START:
 ORG &900
+.START:
     RTS
 .END:
 
