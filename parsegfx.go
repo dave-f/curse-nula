@@ -3,6 +3,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"image"
 	"image/color"
@@ -154,6 +155,22 @@ func addLabel(img *image.RGBA, x, y int, label string) {
 	d.DrawString(label)
 }
 
+func readColourTable(filename string) ([]string, error) {
+	f, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+	s := bufio.NewScanner(f)
+	data := make([]string, 0, 2)
+
+	for s.Scan() {
+		data = append(data, s.Text())
+	}
+
+	return data, nil
+}
+
 func main() {
 
 	f, err := os.Open("curse.bin")
@@ -204,7 +221,7 @@ func main() {
 	// And pharaoh
 	addLabel(img, 0, 64, "Pharaoh (14x23):")
 	y = 64 + 4
-	renderPharaoh(img, data, 8, y)
+	renderPharaoh(img, data, 6, y)
 
 	// lives indicator at 9297, x 4 y 7
 	addLabel(img, 0, 114, "Lives indicator (4x7):")
@@ -220,6 +237,14 @@ func main() {
 	addLabel(img, 0, 184, "NuLA palette:")
 	y = 184 + 4
 	renderPalette(img, 0, y, 16)
+
+	// Finally, add colour table
+	y += 24
+	colours, _ := readColourTable("./gfx.org")
+	for _, v := range colours {
+		addLabel(img, 0, y, v)
+		y += 16
+	}
 
 	// Save it
 	pngFile, err := os.Create("image.png")
