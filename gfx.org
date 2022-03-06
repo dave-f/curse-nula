@@ -1,22 +1,22 @@
-|--------+---------------+---------------+-----------------|
-| colour | default       | actual colour | use             |
-|--------+---------------+---------------+-----------------|
-|      0 | black         | black         |                 |
-|      1 | red           | red           |                 |
-|      2 | green         | green         |                 |
-|      3 | yellow        | yellow        |                 |
-|      4 | blue          | blue          |                 |
-|      5 | magenta       | magenta       |                 |
-|      6 | cyan          | cyan          |                 |
-|      7 | white         | white         |                 |
-|      8 | black/white   | black/white   | pharaoh's eyes  |
-|      9 | red/cyan      | red/cyan      | snake egg       |
-|     10 | green/magenta | black/white   | pharaoh's eyes  |
-|     11 | blue/yellow   | green         | second enemy?   |
-|     12 | yellow/blue   | black         | dynamite        |
-|     13 | magenta/green | blue          | dynamite        |
-|     14 | cyan/red      | white         | torch beam      |
-|     15 | white/black   | green         | snake           |
-|--------+---------------+---------------+-----------------|
+|-------+--------------------+-------------+---------------------|
+| Index | Default BBC Colour | Game Colour | Game Use            |
+|-------+--------------------+-------------+---------------------|
+|     0 | black              | black       | None                |
+|     1 | red                | red         | None                |
+|     2 | green              | green       | None                |
+|     3 | yellow             | yellow      | None                |
+|     4 | blue               | blue        | None                |
+|     5 | magenta            | magenta     | None                |
+|     6 | cyan               | cyan        | None                |
+|     7 | white              | white       | None                |
+|     8 | black/white        | black/white | Pharaoh's eyes      |
+|     9 | red/cyan           | red/cyan    | Snake egg           |
+|    10 | green/magenta      | black/white | Pharaoh's eyes      |
+|    11 | blue/yellow        | green       | None                |
+|    12 | yellow/blue        | black       | Dynamite background |
+|    13 | magenta/green      | blue        | Dynamite            |
+|    14 | cyan/red           | white       | Torch beam          |
+|    15 | white/black        | green       | Snake               |
+|-------+--------------------+-------------+---------------------|
 
 

@@ -10,6 +10,10 @@ import (
 	"io/fs"
 	"io/ioutil"
 	"os"
+
+	"golang.org/x/image/font"
+	"golang.org/x/image/font/basicfont"
+	"golang.org/x/image/math/fixed"
 )
 
 const totalSprites = 33
@@ -50,8 +54,8 @@ func makeBBCMicroColours() {
 	coloursBBC[15] = color.RGBA{0x7f, 0x7f, 0x7f, 0xff} // white 1
 }
 
-func renderPalette(img *image.RGBA, x int, y int) {
-	for i := 0; i < 8; i++ {
+func renderPalette(img *image.RGBA, x int, y int, numColours int) {
+	for i := 0; i < numColours; i++ {
 		thisColour := coloursBBC[i]
 		img.Set(x+0, y+0, thisColour)
 		img.Set(x+1, y+0, thisColour)
@@ -137,6 +141,19 @@ func renderPharaoh(img *image.RGBA, data []byte, x int, y int) {
 	renderCol(x-6, y, data[9426:9426+23], false)
 }
 
+func addLabel(img *image.RGBA, x, y int, label string) {
+	col := color.RGBA{255, 255, 255, 255}
+	point := fixed.Point26_6{fixed.I(x), fixed.I(y)}
+
+	d := &font.Drawer{
+		Dst:  img,
+		Src:  image.NewUniform(col),
+		Face: basicfont.Face7x13,
+		Dot:  point,
+	}
+	d.DrawString(label)
+}
+
 func main() {
 
 	f, err := os.Open("curse.bin")
@@ -171,9 +188,12 @@ func main() {
 		}
 	}
 
+	// Text
+	addLabel(img, 0, 16, "All in-game graphics (10x16):")
+
 	// All graphics are 10x16 and start here:
 	ptr := 6391
-	x, y := 0, 0
+	x, y := 0, 20
 
 	for i := 0; i < totalSprites; i++ {
 		renderCharacter(img, ptr, x, y)
@@ -182,13 +202,24 @@ func main() {
 	}
 
 	// And pharaoh
-	renderPharaoh(img, data, 8, 18)
+	addLabel(img, 0, 64, "Pharaoh (14x23):")
+	y = 64 + 4
+	renderPharaoh(img, data, 8, y)
 
 	// lives indicator at 9297, x 4 y 7
-	renderLives(img, data[9297:9297+2*7], 16, 18)
+	addLabel(img, 0, 114, "Lives indicator (4x7):")
+	y = 114 + 4
+	renderLives(img, data[9297:9297+2*7], 0, y)
 
 	// Render palette
-	renderPalette(img, 0, 44)
+	addLabel(img, 0, 152, "Default palette:")
+	y = 152 + 4
+	renderPalette(img, 0, y, 16)
+
+	// And NuLA palette
+	addLabel(img, 0, 184, "NuLA palette:")
+	y = 184 + 4
+	renderPalette(img, 0, y, 16)
 
 	// Save it
 	pngFile, err := os.Create("image.png")
