@@ -1,5 +1,5 @@
-REM * Pharaoh's Curse : NuLA version v0.1 *
-REM  By Dave Footitt and Chris Hogg 2022
+REM Pharaoh's Curse : NuLA version v0.1
+REM By Dave Footitt and Chris Hogg 2022
 REM
 MODE7
 DIM REGS 4
@@ -33,8 +33,8 @@ REM COLOUR11:PRINTTAB(0,7)"     NuLA ReFuel"'':COLOUR 3
 *FX15
 INPUT "Lives",LIVES%
 PRINT "Snakes (1-5)",SNAKES%
-?&70 = FNCLAMP(LIVES%)
-?&71 = FNCLAMP(SNAKES%)
+?&70 = FNCLAMP(LIVES%,1,99)
+?&71 = FNCLAMP(SNAKES%,1,5)
 IF NULA% ?&72=1 ELSE ?&72=0
 IF NULA% ?&FE22=&40
 MODE 7
@@ -44,7 +44,7 @@ CLOSE #0
 END
 DEFFNTM:LOCALI%,T%:TIME=0:FORI%=1TO5:*FX19
 NEXT:T%=TIME:=T%
-DEFFNCLAMP(N%):IF N%<1 THEN N%=1 ELSE IF N%>99 THEN N%=99
+DEFFNCLAMP(N%,L%,H%):IF N%<L% THEN N%=L% ELSE IF N%>H% THEN N%=H%
 =N%
 DEFPROCPAL
 ?&FE23=&00 : ?&FE23=&00
