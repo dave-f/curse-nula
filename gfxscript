@@ -1,0 +1,9 @@
+;
+; Pharaoh's curse graphics script for png2bbc
+; 20/03/2022
+
+IMAGE res/sheet.png
+MODE 2
+COLOURS BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE
+CUSTOM-NULA-COLOURS 0 188 8 2 FILE game.pal
+CREATE-FILE player.bin FROM-DATA 190 20 10 16 8 DATA-ORDER BLOCK
