@@ -14,6 +14,14 @@ RM           := del
 CP           := copy
 
 #
+# Make sure the bin directory exists
+ifeq ("$(OS)","Windows_NT")
+$(shell if not exist bin mkdir bin)
+else
+$(shell mkdir -p bin)
+endif
+
+#
 # Generated graphics
 GFX_OBJECTS := $(shell $(PNG2BBC) -l gfxscript)
 
@@ -23,7 +31,7 @@ GFX_OBJECTS := $(shell $(PNG2BBC) -l gfxscript)
 
 all: $(OUTPUT_SSD)
 
-$(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas
+$(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas $(GFX_OBJECTS)
 	$(SNAP) res/curse.bin snake.patch 7591 bin/curse.new
 	$(SNAP) bin/curse.new bin/player.bin 7911
 #	$(SNAP) bin/curse.new level.patch 1467
@@ -33,15 +41,16 @@ $(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas
 #	$(SNAP) bin/curse.new pharaoh.patch 9449
 	$(BEEBASM) -i $(MAIN_ASM) -di $(BLANK_SSD) -do $(OUTPUT_SSD)
 
-gfx:
-	$(PNG2BBC) gfxscript
-
 $(GFX_OBJECTS): gfxscript
 	$(PNG2BBC) gfxscript
 
 clean:
 	$(RM) $(OUTPUT_SSD)
+ifeq ("$(OS)","Windows_NT")
 	$(RM) /Q bin\*.*
+else
+	$(RM) -rf bin/
+endif
 
 run:
 	$(BEEBEM) $(BEEBEM_FLAGS) $(OUTPUT_SSD)
