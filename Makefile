@@ -11,7 +11,6 @@ BLANK_SSD    := res/blank.ssd
 OUTPUT_SSD   := curse-nula.ssd
 MAIN_ASM     := main.asm
 RM           := del
-CP           := copy
 
 #
 # Make sure the bin directory exists
@@ -27,7 +26,7 @@ GFX_OBJECTS := $(shell $(PNG2BBC) -l gfxscript)
 
 #
 # Phony targets
-.PHONY: all clean run gfx
+.PHONY: all clean run
 
 all: $(OUTPUT_SSD)
 
