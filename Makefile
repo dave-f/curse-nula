@@ -24,14 +24,17 @@ GFX_OBJECTS := $(shell $(PNG2BBC) -l gfxscript)
 all: $(OUTPUT_SSD)
 
 $(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas
-	$(SNAP) curse.bin snake.patch 7591 curse.new
-	$(SNAP) curse.new player.bin 7911
-#	$(SNAP) curse.new level.patch 1467
-#	$(SNAP) curse.new pharaoh.patch 9311
-#	$(SNAP) curse.new pharaoh.patch 9357
-#	$(SNAP) curse.new pharaoh.patch 9403
-#	$(SNAP) curse.new pharaoh.patch 9449
+	$(SNAP) res/curse.bin snake.patch 7591 bin/curse.new
+	$(SNAP) bin/curse.new bin/player.bin 7911
+#	$(SNAP) bin/curse.new level.patch 1467
+#	$(SNAP) bin/curse.new pharaoh.patch 9311
+#	$(SNAP) bin/curse.new pharaoh.patch 9357
+#	$(SNAP) bin/curse.new pharaoh.patch 9403
+#	$(SNAP) bin/curse.new pharaoh.patch 9449
 	$(BEEBASM) -i $(MAIN_ASM) -di $(BLANK_SSD) -do $(OUTPUT_SSD)
+
+gfx:
+	$(PNG2BBC) gfxscript
 
 $(GFX_OBJECTS): gfxscript
 	$(PNG2BBC) gfxscript
