@@ -25,7 +25,11 @@ endif
 GFX_OBJECTS := $(shell $(PNG2BBC) -l gfxscript)
 
 #
-# Phony targets
+# Input graphic file(s)
+SRC_GRAPHIC := $(shell $(PNG2BBC) -i gfxscript)
+
+#
+# Phony targetsr
 .PHONY: all clean run
 
 all: $(OUTPUT_SSD)
@@ -40,7 +44,7 @@ $(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas $(GFX_OBJECTS)
 #	$(SNAP) bin/curse.new pharaoh.patch 9449
 	$(BEEBASM) -i $(MAIN_ASM) -di $(BLANK_SSD) -do $(OUTPUT_SSD)
 
-$(GFX_OBJECTS): gfxscript
+$(GFX_OBJECTS): gfxscript $(SRC_GRAPHIC)
 	$(PNG2BBC) gfxscript
 
 clean:
