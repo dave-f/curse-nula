@@ -35,8 +35,13 @@ SRC_GRAPHIC := $(shell $(PNG2BBC) -i gfxscript)
 all: $(OUTPUT_SSD)
 
 $(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas $(GFX_OBJECTS)
-	$(SNAP) res/curse.bin snake.patch 7591 bin/curse.new
-	$(SNAP) bin/curse.new bin/player.bin 7911
+	$(SNAP) res/curse.bin bin/player.bin 7911 bin/curse.new
+	$(SNAP) bin/curse.new bin/brick.bin 6391
+	$(SNAP) bin/curse.new bin/dazed.bin 6471
+	$(SNAP) bin/curse.new bin/ring.bin 6631
+	$(SNAP) bin/curse.new bin/goblet.bin 6711
+	$(SNAP) bin/curse.new bin/enemy.bin 7591
+#	$(SNAP) bin/curse.new snake.patch 7591
 #	$(SNAP) bin/curse.new level.patch 1467
 #	$(SNAP) bin/curse.new pharaoh.patch 9311
 #	$(SNAP) bin/curse.new pharaoh.patch 9357

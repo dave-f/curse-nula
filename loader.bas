@@ -1,5 +1,7 @@
-REM Pharaoh's Curse : NuLA version v0.1
-REM By Dave Footitt and Chris Hogg 2022
+REM Pharaoh's Curse
+REM NuLA version v0.1 March 2022
+REM Archaeology Dave Footitt
+REM Restoration Chris Hogg
 REM
 MODE7
 DIM REGS 4
@@ -19,7 +21,7 @@ E%=FNTM
 *FX19
 G%=FNTM
 NULA%=E%/G%>0.75
-IF NULA% GOTO 23 ELSE MODE7:PRINT '"No NuLA detected!"':GOTO 33
+IF NULA% GOTO 25 ELSE MODE7:PRINT '"No NuLA detected!"':GOTO 35
 MODE2
 VDU 23,1,0;0;0;
 *FX4,1
@@ -35,6 +37,7 @@ INPUT "Lives",LIVES%
 INPUT "Snakes (1-5)",SNAKES%
 ?&70 = FNCLAMP(LIVES%,1,99)
 ?&71 = FNCLAMP(SNAKES%,1,5)
+PRINT ?&70,?&71
 IF NULA% ?&72=1 ELSE ?&72=0
 REM IF NULA% ?&FE22=&40
 REM MODE 7
@@ -47,12 +50,20 @@ NEXT:T%=TIME:=T%
 DEFFNCLAMP(N%,L%,H%):IF N%<L% THEN N%=L% ELSE IF N%>H% THEN N%=H%
 =N%
 DEFPROCPAL
-?&FE23=&00 : ?&FE23=&01
+?&FE23=&00 : ?&FE23=&12
 ?&FE23=&19 : ?&FE23=&86
 ?&FE23=&25 : ?&FE23=&31
 ?&FE23=&3F : ?&FE23=&B7
 ?&FE23=&45 : ?&FE23=&43
-?&FE23=&5F : ?&FE23=&0F
-?&FE23=&60 : ?&FE23=&FF
+?&FE23=&5E : ?&FE23=&A3
+?&FE23=&63 : ?&FE23=&7E
 ?&FE23=&7F : ?&FE23=&FF
+?&FE23=&81 : ?&FE23=&11
+?&FE23=&98 : ?&FE23=&6A
+?&FE23=&A2 : ?&FE23=&42
+?&FE23=&B7 : ?&FE23=&70
+?&FE23=&C0 : ?&FE23=&07
+?&FE23=&DB : ?&FE23=&41
+?&FE23=&EF : ?&FE23=&EA
+?&FE23=&F5 : ?&FE23=&74
 ENDPROC
