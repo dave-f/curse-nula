@@ -40,8 +40,12 @@ $(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas $(GFX_OBJECTS)
 	$(SNAP) bin/curse.new bin/dazed.bin 6471
 	$(SNAP) bin/curse.new bin/ring.bin 6631
 	$(SNAP) bin/curse.new bin/goblet.bin 6711
+	$(SNAP) bin/curse.new bin/passage.bin 6791
+	$(SNAP) bin/curse.new bin/door.bin 6951
+	$(SNAP) bin/curse.new bin/key.bin 7431
+	$(SNAP) bin/curse.new bin/lock.bin 7511
 	$(SNAP) bin/curse.new bin/enemy.bin 7591
-#	$(SNAP) bin/curse.new snake.patch 7591
+	$(SNAP) bin/curse.new bin/torch.bin 8551
 #	$(SNAP) bin/curse.new level.patch 1467
 #	$(SNAP) bin/curse.new pharaoh.patch 9311
 #	$(SNAP) bin/curse.new pharaoh.patch 9357
