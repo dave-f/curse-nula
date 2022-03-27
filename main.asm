@@ -2,6 +2,7 @@
 ; 22 Feb 2022 -- 
 
 ORG &900
+GUARD &A00
 
 .START:
 .LOAD_NULA:
@@ -25,6 +26,10 @@ ORG &900
     BNE PROGRAM_PAL
 
 .START_GAME:
+    LDA &70
+    STA &1F08
+    LDA &71
+    STA &1F45
     JMP &1900
 
 .PAL:
