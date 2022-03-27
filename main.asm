@@ -26,10 +26,17 @@ GUARD &A00
     BNE PROGRAM_PAL
 
 .START_GAME:
+    ; Apply pokes
     LDA &70
     STA &1F08
     LDA &71
     STA &1F45
+
+    ; Disable all palette changes for now
+    LDA #&60
+    STA &1C76
+
+    ; Enter game
     JMP &1900
 
 .PAL:

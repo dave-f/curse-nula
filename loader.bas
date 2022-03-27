@@ -1,4 +1,4 @@
-REM  ** Pharaoh's Curse  **
+REM  ** Pharaoh's  Curse **
 REM  ** NuLA Restoration **
 REM  Version 0.1 March 2022
 REM Archaeology Dave Footitt
