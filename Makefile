@@ -49,11 +49,8 @@ $(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas $(GFX_OBJECTS)
 	$(SNAP) bin/curse.new bin/dynamite.bin 8791
 	$(SNAP) bin/curse.new bin/skull.bin 8871
 	$(SNAP) bin/curse.new bin/egg.bin 8951
-#	$(SNAP) bin/curse.new level.patch 1467
-#	$(SNAP) bin/curse.new pharaoh.patch 9311
-#	$(SNAP) bin/curse.new pharaoh.patch 9357
-#	$(SNAP) bin/curse.new pharaoh.patch 9403
-#	$(SNAP) bin/curse.new pharaoh.patch 9449
+#	$(SNAP) bin/curse.new bin/pharaoh.bin 9311
+#   $(SNAP) bin/curse.new level.patch 1467
 	$(BEEBASM) -i $(MAIN_ASM) -di $(BLANK_SSD) -do $(OUTPUT_SSD)
 
 $(GFX_OBJECTS): gfxscript $(SRC_GRAPHIC)
