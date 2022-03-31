@@ -29,7 +29,7 @@ GFX_OBJECTS := $(shell $(PNG2BBC) -l gfxscript)
 SRC_GRAPHIC := $(shell $(PNG2BBC) -i gfxscript)
 
 #
-# Phony targetsr
+# Phony targets
 .PHONY: all clean run
 
 all: $(OUTPUT_SSD)
@@ -49,7 +49,7 @@ $(OUTPUT_SSD): $(MAIN_ASM) Makefile loader.bas $(GFX_OBJECTS)
 	$(SNAP) bin/curse.new bin/dynamite.bin 8791
 	$(SNAP) bin/curse.new bin/skull.bin 8871
 	$(SNAP) bin/curse.new bin/egg.bin 8951
-#	$(SNAP) bin/curse.new bin/pharaoh.bin 9311
+	$(SNAP) bin/curse.new bin/pharaoh.bin 9311
 #   $(SNAP) bin/curse.new level.patch 1467
 	$(BEEBASM) -i $(MAIN_ASM) -di $(BLANK_SSD) -do $(OUTPUT_SSD)
 

@@ -89,7 +89,7 @@ GUARD &A00
 
 
 .END:
-    PUTFILE "bin/curse.new","CURSE",&1900,&1900
-    PUTFILE "res/curse.bin","ORG",&1900,&1900
+    PUTFILE "bin/curse.new","Curse",&1900,&1900
+    PUTFILE "res/curse.bin","Org",&1900,&1900
     PUTBASIC "loader.bas","Loader"
-    SAVE "PATCHER",START,END
+    SAVE "Patcher",START,END
