@@ -7,9 +7,6 @@ MODE 2
 COLOURS BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE
 CUSTOM-NULA-COLOURS 0 188 16 2 FILE bin/game.pal
 
-; Set dynamite background colour to index 12
-CUSTOM-COLOUR 000000 12
-
 ; Brick
 CREATE-FILE bin/brick.bin FROM-DATA 0 20 2 8 1 DATA-ORDER BLOCK
 APPEND-FILE bin/brick.bin FROM-DATA 0 28 2 8 1 DATA-ORDER BLOCK
@@ -458,3 +455,13 @@ APPEND-FILE bin/pharaoh.bin FROM-DATA 12 87 2 1 1 DATA-ORDER LINE
 APPEND-FILE bin/pharaoh.bin FROM-DATA 12 88 2 1 1 DATA-ORDER LINE
 APPEND-FILE bin/pharaoh.bin FROM-DATA 12 89 2 1 1 DATA-ORDER LINE
 APPEND-FILE bin/pharaoh.bin FROM-DATA 12 90 2 1 1 DATA-ORDER LINE
+
+; Here we just create one single colour to patch into the palette
+; This is for the dynamite background, which is the same physical
+; colour as the normal background, but a different logical colour
+
+; Reset all colours
+COLOURS WHITE
+
+; Create a file of one colour to patch in for the dynamite
+CUSTOM-NULA-COLOURS 0 188 1 1 12 FILE bin/patch.pal
