@@ -425,7 +425,7 @@
 1BF9 8D 01 FE STA &FE01
 1BFC 58       CLI
 1BFD 60       RTS
-1BFE A2 0E    LDX #&0E
+1BFE A2 0E    LDX #&0E      ; &DFE when downloaded
 1C00 A0 07    LDY #&07
 1C02 20 76 0E JSR &0E76     ; PALCHANGE 14 -> 7 (Torch beam)
 1C05 A2 0D    LDX #&0D
@@ -453,7 +453,7 @@
 1C3A A9 02    LDA #&02
 1C3C 20 EE FF JSR &FFEE     ; Mode 2
 1C3F 20 3B 0F JSR &0F3B
-1C42 20 FE 0D JSR &0DFE
+1C42 20 FE 0D JSR &0DFE     ; Set up palette
 1C45 A9 B0    LDA #&B0
 1C47 8D 06 04 STA &0406
 1C4A A9 00    LDA #&00
@@ -6503,9 +6503,10 @@
 3FA9 C8       INY
 3FAA 01 10    ORA (&10,X)
 3FAC 02       ???
-3FAD 02       ???
-3FAE 03       ???
-3FAF 06 00    ASL &00
+3FAD 02       EQUB 02       ; These 3 bytes (2,3 and 6) are the enemy colours
+3FAE 03       EQUB 03
+3FAF 06       EQUB 06
+3FB0 00       BRK
 3FB1 00       BRK
 3FB2 00       BRK
 3FB3 00       BRK

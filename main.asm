@@ -72,6 +72,12 @@ GUARD &A00
     STA &1C43
     STA &1C44
 
+    ; Set up enemy colours
+    LDA #&0F
+    STA &3FAD
+
+    ; Another 2 to do
+
     ; Enter game
     JMP &1900
 
