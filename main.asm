@@ -72,7 +72,13 @@ GUARD &A00
     STA &1C43
     STA &1C44
 
-    ; Set up enemy colours
+    ; Do not do anything with colour 11
+    LDA #&EA
+    STA &1D76
+    STA &1D77
+    STA &1D78
+
+    ; Set up enemy colour table
     LDA #&0F
     STA &3FAD
 
@@ -99,9 +105,10 @@ GUARD &A00
 .EYE_TEXT:
     EQUS "EYE   ",0
 
-
 .END:
     PUTFILE "bin/curse.new","Curse",&1900,&1900
     PUTFILE "res/curse.bin","Org",&1900,&1900
+    PUTFILE "bin/title.bin","Title",&3000,&3000
     PUTBASIC "loader.bas","Loader"
+    PRINT "Code takes",END-START,"bytes"
     SAVE "Patcher",START,END
