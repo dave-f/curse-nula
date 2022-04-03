@@ -62,9 +62,15 @@ GUARD &A00
     LDA &71
     STA &1F45
 
-    ; Disable all palette changes for now
-    LDA #&60
-    STA &1C76
+    ; On the initial score screen, make colour 15 map to colour 15
+    LDA #&0F
+    STA &2D98
+
+    ; Do not set up the normal palette when entering game
+    LDA #&EA
+    STA &1C42
+    STA &1C43
+    STA &1C44
 
     ; Enter game
     JMP &1900
