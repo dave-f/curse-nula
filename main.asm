@@ -4,6 +4,7 @@
 ORG &900
 GUARD &A00
 
+; TODO, CHECK &70 for NuLA flag
 .START:
 .LOAD_NULA:
     LDX #LO(LOADER_NULA)
@@ -56,9 +57,7 @@ GUARD &A00
     JMP PATCHLOOP3
 
 .START_GAME:
-    ; Apply pokes
-    LDA &70
-    STA &1F08
+    ; Set number of enemies
     LDA &71
     STA &1F45
 
@@ -83,7 +82,7 @@ GUARD &A00
     STA &3FAC
     STA &3FAD
 
-    ; Another 2 to do
+    ; TODO- Another 2 to do
 
     ; Enter game
     JMP &1900
@@ -105,6 +104,9 @@ GUARD &A00
 
 .EYE_TEXT:
     EQUS "EYE   ",0
+
+.LOAD_TEXT:
+    EQUS "   (SPACE to load)",0
 
 .END:
     PUTFILE "bin/curse.new","Curse",&1900,&1900

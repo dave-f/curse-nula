@@ -1,10 +1,10 @@
 REM  ** Pharaoh's  Curse **
 REM  ** NuLA Restoration **
-REM  Version 0.1 March 2022
+REM  Version 1.0 April 2022
 REM Archaeology Dave Footitt
 REM  Restoration Chris Hogg
 REM
-MODE7
+MODE 7
 DIM REGS 4
 A%=234
 X%=0
@@ -22,27 +22,19 @@ E%=FNTM
 *FX19
 G%=FNTM
 NULA%=E%/G%>0.75
-IF NULA% GOTO 26 ELSE MODE7:PRINT '"No NuLA detected!"':GOTO 36
-MODE2
-REM VDU 23,1,0;0;0;
-*FX4,1
-REM FORI=0TO200
-REM *FX19
-REM *LOAD JETPIC
-REM NEXTI
-REM CALL &900
-REM VDU 23,1,1;0;0;0;
-COLOUR11:PRINTTAB(0,8)"  NuLA Restoration"'':COLOUR 7
-*FX15
-INPUT "Lives",LIVES%
-INPUT "Enemies (1-5)",ENEMIES%
-?&70 = FNCLAMP(LIVES%,1,5)
+MODE 7
+PROCTITLE
+IF NULA% PRINT '"           (NuLA Detected OK)" ELSE PRINT '"No NuLA detected!"'
+PROCKEYS
+*FX 4,1
+*FX 15
+INPUT ''"Enemies (1-5)",ENEMIES%
 ?&71 = FNCLAMP(ENEMIES%,1,5)+1
-PRINT ?&70,?&71
-IF NULA% ?&72=1 ELSE ?&72=0
+IF NULA% ?&70=1 ELSE ?&70=0
 IF NULA% ?&FE22=&40
-REM MODE 7
-PRINT "Loading..."
+PRINT
+PRINT ?&70,?&71
+PRINT '"Loading..."
 CLOSE #0
 *RUN PATCHER
 END
@@ -50,3 +42,12 @@ DEFFNTM:LOCALI%,T%:TIME=0:FORI%=1TO5:*FX19
 NEXT:T%=TIME:=T%
 DEFFNCLAMP(N%,L%,H%):IF N%<L% THEN N%=L% ELSE IF N%>H% THEN N%=H%
 =N%
+DEFPROCTITLE
+PRINT CHR$(132);CHR$(157);"      ";CHR$(135);CHR$(156);CHR$(141);" Pharaoh's  Curse  ";CHR$(132);CHR$(157)
+PRINT CHR$(131);CHR$(157);"      ";CHR$(135);CHR$(156);CHR$(141);" Pharaoh's  Curse  ";CHR$(131);CHR$(157)
+PRINT CHR$(132);CHR$(157);"      ";CHR$(135);CHR$(156);CHR$(141);" NuLA Restoration  ";CHR$(132);CHR$(157)
+PRINT CHR$(131);CHR$(157);"      ";CHR$(135);CHR$(156);CHR$(141);" NuLA Restoration  ";CHR$(131);CHR$(157)
+ENDPROC
+DEFPROCKEYS
+REM TODO: Print keys!
+ENDPROC
