@@ -9,5 +9,5 @@ data 0x318a,3190
 data 0x3e38,14
 data 0x3ea3,61
 data 0x2228,1
-data 0x3fad,3
+data 0x3fac,4
 save curse.dis

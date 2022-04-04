@@ -80,6 +80,7 @@ GUARD &A00
 
     ; Set up enemy colour table
     LDA #&0F
+    STA &3FAC
     STA &3FAD
 
     ; Another 2 to do

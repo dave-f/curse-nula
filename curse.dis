@@ -6502,8 +6502,8 @@
 3FA7 10 23    BPL &3FCC
 3FA9 C8       INY
 3FAA 01 10    ORA (&10,X)
-3FAC 02       ???
-3FAD 02       EQUB 02       ; These 3 bytes (2,3 and 6) are the enemy colours
+3FAC 02       EQUB 02       ; These bytes (2,2,3 and 6) are the enemy colours
+3FAD 02       EQUB 02
 3FAE 03       EQUB 03
 3FAF 06       EQUB 06
 3FB0 00       BRK
