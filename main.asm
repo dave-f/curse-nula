@@ -77,12 +77,14 @@ GUARD &A00
     STA &1D77
     STA &1D78
 
-    ; Set up enemy colour table
+    ; Set up enemy colour table to 15,15,2,1
     LDA #&0F
     STA &3FAC
     STA &3FAD
-
-    ; TODO- Another 2 to do
+    LDA #&02
+    STA &3FAE
+    LDA #&01
+    STA &3FAF
 
     ; Enter game
     JMP &1900
