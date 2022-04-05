@@ -31,7 +31,7 @@ PROCKEYS
 PRINT'
 *FX 4,1
 *FX 15
-PRINT "Select fewer enemies for an easier game!"
+PRINT " Select fewer enemies for an easier game"
 PRINT
 INPUTTAB(12)"Enemies (1-5)",ENEMIES%
 ?&71 = FNCLAMP(ENEMIES%,1,5)+1
