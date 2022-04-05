@@ -4,18 +4,17 @@
 ORG &900
 GUARD &A00
 
-; TODO, CHECK &70 for NuLA flag
 .START:
-.LOAD_NULA:
-    LDX #LO(LOADER_NULA)
-    LDY #HI(LOADER_NULA)
-    JMP DO_LOAD
-
-.LOAD_NORMAL:
+    LDA &70
+    BNE NULA
     LDX #LO(LOADER_NORMAL)
     LDY #HI(LOADER_NORMAL)
+    JSR &FFF7
+    JMP START_GAME
 
-.DO_LOAD:
+.NULA:
+    LDX #LO(LOADER_NULA)
+    LDY #HI(LOADER_NULA)
     JSR &FFF7
     LDX #0
 
@@ -51,15 +50,12 @@ GUARD &A00
 
 .PATCHLOOP3:
     LDA EYE_TEXT,X
-    BEQ START_GAME
+    BEQ TEXT_DONE
     STA &2E33,X
     INX
     JMP PATCHLOOP3
 
-.START_GAME:
-    ; Set number of enemies
-    LDA &71
-    STA &1F45
+.TEXT_DONE:
 
     ; On the initial score screen, make colour 15 map to colour 15
     LDA #&0F
@@ -86,7 +82,11 @@ GUARD &A00
     LDA #&01
     STA &3FAF
 
-    ; Enter game
+.START_GAME:
+
+    ; Start game with number of enemies selected
+    LDA &71
+    STA &1F45
     JMP &1900
 
 .PAL:
