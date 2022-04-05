@@ -24,16 +24,21 @@ G%=FNTM
 NULA%=E%/G%>0.75
 MODE 7
 PROCTITLE
-IF NULA% PRINT '"           (NuLA Detected OK)" ELSE PRINT '"No NuLA detected!"'
+IF NULA% PRINT '"           (NuLA Detected OK)" ELSE PRINT '"No NuLA detected!"'  : REM TODO justify
+PRINT
 PROCKEYS
-*FX 4,1
+PRINT'
+REM *FX 4,1
 *FX 15
-INPUT ''"Enemies (1-5)",ENEMIES%
+PRINT "Select fewer enemies for an easier game!"
+PRINT
+INPUTTAB(10)"Enemies (1-5)",ENEMIES%
 ?&71 = FNCLAMP(ENEMIES%,1,5)+1
 IF NULA% ?&70=1 ELSE ?&70=0
 IF NULA% ?&FE22=&40
-PRINT
-PRINT ?&70,?&71
+REM PRINT
+REM PRINT ?&70,?&71
+MODE 7
 PRINT '"Loading..."
 CLOSE #0
 *RUN PATCHER
@@ -49,5 +54,16 @@ PRINT CHR$(132);CHR$(157);"      ";CHR$(135);CHR$(156);CHR$(141);" NuLA Restorat
 PRINT CHR$(131);CHR$(157);"      ";CHR$(135);CHR$(156);CHR$(141);" NuLA Restoration  ";CHR$(131);CHR$(157)
 ENDPROC
 DEFPROCKEYS
-REM TODO: Print keys!
+PRINT
+PRINTTAB(10)"Z - left"
+PRINTTAB(10)"X - right"
+PRINTTAB(10)": - up"
+PRINTTAB(10)"/ - down"
+PRINTTAB(10)"RETURN - shine torch"
+PRINTTAB(10)"SHIFT - drop dynamite"
+PRINTTAB(10)"F - freeze"
+PRINTTAB(10)"s - start"
+PRINTTAB(10)"Q - quiet"
+PRINTTAB(10)"L - loud"
+PRINTTAB(10)"Esc - give up"
 ENDPROC
