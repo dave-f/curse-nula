@@ -16,5 +16,5 @@ Edit the `makefile` to point at the tools detailed above and running `make` shou
 # Thanks
 
 Chris Hogg - Art  
-Tom Seddon - b2 Emulator and NuLA detection code
+Tom Seddon - b2 Emulator and NuLA detection code  
 Rob Coleman - NuLA hardware
