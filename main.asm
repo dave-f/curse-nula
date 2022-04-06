@@ -107,9 +107,6 @@ GUARD &A00
 .EYE_TEXT:
     EQUS "EYE   ",0
 
-.LOAD_TEXT:
-    EQUS "   (SPACE to load)",0
-
 .END:
     PUTFILE "bin/curse.new","Curse",&1900,&1900
     PUTFILE "res/curse.bin","Org",&1900,&1900
