@@ -9,7 +9,7 @@ To build and apply the patch you'll need these tools:
 * [png2bbc](https://github.com/dave-f/png2bbc)
 * [snap](https://github.com/dave-f/snap)
 
-The [Go language](https://go.dev/) is used to export the original graphics, but this is not required to build the game, and was just used in the early stages of development.  I also used [bbc-disgo](https://github.com/dave-f/bbc-disgo) to disassemble the game, but again, this is not required unless you want to go any further with it.
+The graphics were extracted from the original binary using a small Go program, but this is not required to build the game, and was just used in the early stages of development.  I also used my own [bbc-disgo](https://github.com/dave-f/bbc-disgo) to disassemble the game, but again, this is not required unless you want to go any further with it.
 
 # Building
 
