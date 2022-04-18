@@ -1,6 +1,8 @@
 # curse-nula
 A NuLA version of Pharoah's Curse for the BBC Micro
 
+![Screenshot](screenshot.png)
+
 # Tools required
 
 To build and apply the patch you'll need these tools:
